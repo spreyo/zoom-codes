@@ -16,24 +16,39 @@ class Subject():
         self.code = code
         self.passw = passw
 
+
     def copyCode(self):
         copy2clip(self.code)
 
     def copyPw(self):
         copy2clip(self.passw)
     
+OUTPUT_PATH = Path(__file__).parent
+
+def readCode(file):
+    CODES_PATH = OUTPUT_PATH / Path(file)
+    with open(CODES_PATH) as code:
+        lines = code.readlines()
+        return lines[0]
+
+def readPass(file):
+    CODES_PATH = OUTPUT_PATH / Path(file)
+    with open(CODES_PATH) as code:
+        lines = code.readlines()
+        return lines[1]
+
+matCodeRead = readCode('./codes/mat.txt')
+print(matCodeRead)
 
 
-
-
-mat = Subject(code='8955489281', passw='880425')
-sjl = Subject(code='8955489281', passw='880425')
-tsv = Subject(code='967 9747 5467', passw='TSV')
-dej = Subject(code='740 2084 9957', passw='DEJ')
-anj = Subject(code='4360045986')
-che = Subject(code='410 843 6589', passw='sktKt1')
-geg = Subject(code='931 3133 4145', passw='GEG')
-nej = Subject(code='447 266 1286', passw='7AgZ7U')
+mat = Subject(code=readCode('./codes/mat.txt'), passw=readPass('./codes/mat.txt'))
+sjl = Subject(code=readCode('./codes/mat.txt'), passw=readPass('./codes/mat.txt'))
+tsv = Subject(code=readCode('./codes/tsv.txt'), passw=readPass('./codes/tsv.txt'))
+dej = Subject(code=readCode('./codes/dej.txt'), passw=readPass('./codes/dej.txt'))
+anj = Subject(code=readCode('./codes/anj.txt'))
+che = Subject(code=readCode('./codes/che.txt'), passw=readPass('./codes/che.txt'))
+geg = Subject(code=readCode('./codes/geg.txt'), passw=readPass('./codes/geg.txt'))
+nej = Subject(code=readCode('./codes/nej.txt'), passw=readPass('./codes/nej.txt'))
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("./assets")
@@ -51,9 +66,8 @@ def relative_to_assets(path: str) -> Path:
 window = Tk()
 window.title('zoom hodiny')
 
-window.bind("<Key> R",os.system(r'start C:\Users\vikto\AppData\Roaming\Zoom\bin\Zoom.exe'))
-window.iconphoto(True, PhotoImage(file = r"C:\Users\vikto\Documents\AHOJ\build\icon.png"))
-
+# window.bind("<Key> R",os.system(r'start C:\Users\vikto\AppData\Roaming\Zoom\bin\Zoom.exe'))
+# window.iconphoto(True, PhotoImage(file = r"C:\Users\vikto\Documents\AHOJ\build\icon.png"))
 
 window.geometry("928x369")
 window.configure(bg = "#FFFFFF")
